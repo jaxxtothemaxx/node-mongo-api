@@ -40,3 +40,12 @@ app.get("/personnel", (request, response) => {
     response.send(result);
   });
 });
+
+app.get("/personnel/:id", (request, response) => {
+  collection.findOne({ "_id": new ObjectId(request.params.id) }, (error, result) => {
+    if(error) {
+      return response.status(500).send(error);
+    }
+    response.send(result);
+  });
+});
